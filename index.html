@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Invite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e0b3ff, #ffffff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+            width: 90%;
+            max-width: 600px;
+            height: 80%;
+            max-height: 500px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 3px solid #b19cd9;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background-color: transparent;
+            z-index: 1;
+        }
+        .slide.hidden {
+            transform: translateX(-100%);
+            z-index: 0;
+        }
+        .slide.active {
+            transform: translateX(0);
+            z-index: 2;
+        }
+        .slide.next {
+            transform: translateX(100%);
+            z-index: 1;
+        }
+        h1, p {
+            margin: 20px;
+            color: #6a0dad;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        p {
+            font-size: 1.4em;
+            font-weight: 400;
+        }
+        button {
+            padding: 12px 25px;
+            margin: 10px;
+            border: 2px solid #b19cd9;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 18px;
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffffff;
+            color: #6a0dad;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        button:hover {
+            background-color: #e0b3ff;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        #yes {
+            background-color: #b19cd9;
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        #no {
+            background-color: #f0f0f0;
+            color: #999;
+            position: relative;
+        }
+        #no:hover {
+            transform: translateX(-50px);
+            transition: transform 0.3s;
+        }
+        .celebration {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .celebration img {
+            width: 150px;
+            height: auto;
+            margin: 0 10px;
+            animation: flip 2s infinite;
+        }
+        @keyframes flip {
+            0%, 100% { transform: rotateY(0deg); }
+            50% { transform: rotateY(180deg); }
+        }
+        .heart {
+            position: absolute;
+            color: #ff69b4;
+            font-size: 24px;
+            animation: float 3s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 10;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        .sparkle {
+            position: absolute;
+            color: #ffd700;
+            font-size: 18px;
+            animation: sparkle 2s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 10;
+        }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Slide 1 -->
+        <div id="slide1" class="slide active">
+            <h1>hey bbyq~~~</h1>
+            <button onclick="nextSlide(1)">Click to continue</button>
+        </div>
+
+        <!-- Slide 2 -->
+        <div id="slide2" class="slide next">
+            <p>its february, and i know we dont have our own monthsary this month :,[</p>
+            <button onclick="nextSlide(2)">Click to continue</button>
+        </div>
+
+        <!-- Slide 3 -->
+        <div id="slide3" class="slide next">
+            <p>so ill ask you this instead...</p>
+            <button onclick="nextSlide(3)">Click to continue</button>
+        </div>
+
+        <!-- Slide 4 -->
+        <div id="slide4" class="slide next">
+            <h1>will you be my valentine??</h1>
+            <div>
+                <button id="no" disabled>No</button>
+                <button id="yes" onclick="celebrate()">Yes</button>
+            </div>
+        </div>
+
+        <!-- Celebration Slide -->
+        <div id="celebration" class="slide next celebration">
+            <h1>yayyy!! I LOVE YOUU</h1>
+            <div class="image-container">
+                <!-- Add your pictures here: Replace src with your image URLs or paths -->
+                <img src="your-picture1.jpg" alt="Us 1">
+                <img src="your-picture2.jpg" alt="Us 2">
+                <!-- Add more images as needed -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+
+        function nextSlide(slideNumber) {
+            // Add hearts and sparkles on transition
+            createHeartsAndSparkles();
+            document.getElementById(`slide${slideNumber}`).classList.remove('active');
+            document.getElementById(`slide${slideNumber}`).classList.add('hidden');
+            document.getElementById(`slide${slideNumber + 1}`).classList.remove('next');
+            document.getElementById(`slide${slideNumber + 1}`).classList.add('active');
+            currentSlide = slideNumber + 1;
+        }
+
+        function celebrate() {
+            // Add extra hearts on yes
+            createHeartsAndSparkles();
+            document.getElementById('slide4').classList.remove('active');
+            document.getElementById('slide4').classList.add('hidden');
+            document.getElementById('celebration').classList.remove('next');
+            document.getElementById('celebration').classList.add('active');
+            document.getElementById('celebration').style.display = 'flex';
+        }
+
+        function createHeartsAndSparkles() {
+            const container = document.querySelector('.container');
+            for (let i = 0; i < 10; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(heart);
+                setTimeout(() => heart.remove(), 3000);
+            }
+            for (let i = 0; i < 5; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.innerHTML = '✨';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 2000);
+            }
+        }
+    </script>
+</body>
+</html>
